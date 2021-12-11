@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_exercise_1/provider/counter_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -7,18 +9,17 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Provider example"),
+        title: Text("Provider example ${context.watch<CounterModel>().count}"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text("You have pushed button 0 times"),
-            ElevatedButton(
-              child: const Text("Press"),
-              onPressed: () {},
-            )
+            Text(
+              "You have pushed button ${context.watch<CounterModel>().count} times",
+              style: TextStyle(fontSize: 18),
+            ),
           ],
         ),
       ),
@@ -26,19 +27,25 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<CounterModel>().decrement();
+            },
             tooltip: "Decrement",
             child: const Icon(Icons.remove),
           ),
           const SizedBox(width: 10),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<CounterModel>().reset();
+            },
             tooltip: "Reset",
             child: const Icon(Icons.exposure_zero),
           ),
           const SizedBox(width: 10),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<CounterModel>().increment();
+            },
             tooltip: "Increment",
             child: const Icon(Icons.add),
           ),

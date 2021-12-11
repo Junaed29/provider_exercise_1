@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_exercise_1/provider/counter_provider.dart';
 import 'package:provider_exercise_1/screen/home_page.dart';
 import 'package:provider_exercise_1/screen/second_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => CounterModel()),
+    ], child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
