@@ -20,6 +20,12 @@ class HomePage extends StatelessWidget {
               "You have pushed button ${context.watch<CounterModel>().count} times",
               style: TextStyle(fontSize: 18),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/second");
+              },
+              child: Text("Next Screen"),
+            )
           ],
         ),
       ),
